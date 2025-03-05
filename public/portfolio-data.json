@@ -1,0 +1,28 @@
+
+{
+  "skills": [
+    "React, Node.js, HTML5, CSS3",
+    "MongoDB, SQLite, MySQL",
+    "Python, JavaScript",
+    "Frontend Design (Figma)",
+    "Cloud Deployment & Server Management",
+    "Accessibility Implementation"
+  ],
+  "experience": [
+    {
+      "company": "Wonderkids School Website",
+      "position": "Full-Stack Developer",
+      "period": "OCT - NOV"
+    },
+    {
+      "company": "IDIT Blackbucks",
+      "position": "Python Full-Stack Intern",
+      "period": "May 2024 - July 2024"
+    },
+    {
+      "company": "Google",
+      "position": "Android Developer (Virtual Internship)",
+      "period": "OCT-DEC 2024"
+    }
+  ]
+}

@@ -40,7 +40,7 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
       aria-pressed={isFlipped}
       aria-label={`Project: ${project.title}. Press Enter to view details`}
     >
-      <div className="h-56 md:h-64 perspective">
+      <div className="h-64 md:h-72 perspective">
         <div 
           className={cn(
             "w-full h-full preserve-3d backface-hidden transition-all duration-700",
@@ -88,7 +88,7 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
           {/* Back side - Details */}
           <div className="h-full w-full absolute backface-hidden rotate-y-180 bg-secondary p-6 flex flex-col">
             <h3 className="text-xl font-semibold">{project.title}</h3>
-            <p className="text-muted-foreground mt-2 flex-grow">{project.description}</p>
+            <p className="text-muted-foreground mt-2 flex-grow text-sm md:text-base">{project.description}</p>
             <div className="flex flex-wrap gap-2 mt-4">
               {project.tags.map((tag, i) => (
                 <span key={i} className="text-xs font-medium py-1 px-2 rounded-full glass-panel">

@@ -43,31 +43,9 @@ export const about = {
   name: "Thota Sujay Babu",
   headline: "Full-Stack Developer",
   bio: "I'm Thota Sujay Babu, a passionate Full-Stack Developer with a B.Tech in Computer Science from SRKR Engineering College. I specialize in creating innovative, accessible solutions with a focus on user experience and performance optimization.",
-  skills: [
-    "React, Node.js, HTML5, CSS3",
-    "MongoDB, SQLite, MySQL",
-    "Python, JavaScript",
-    "Frontend Design (Figma)",
-    "Cloud Deployment & Server Management",
-    "Accessibility Implementation"
-  ],
-  experience: [
-    {
-      company: "Wonderkids School Website",
-      position: "Full-Stack Developer",
-      period: "OCT - NOV"
-    },
-    {
-      company: "IDIT Blackbucks",
-      position: "Python Full-Stack Intern",
-      period: "May 2024 - July 2024"
-    },
-    {
-      company: "Google",
-      position: "Android Developer (Virtual Internship)",
-      period: "OCT-DEC 2024"
-    }
-  ]
+  // These will be loaded dynamically from the JSON file
+  skills: [],
+  experience: []
 };
 
 // Contact information
@@ -86,3 +64,46 @@ export const contact = {
     }
   ]
 };
+
+// Function to load dynamic data
+export async function loadDynamicData() {
+  try {
+    const response = await fetch('/portfolio-data.json');
+    if (!response.ok) {
+      throw new Error('Failed to load portfolio data');
+    }
+    const data = await response.json();
+    about.skills = data.skills || [];
+    about.experience = data.experience || [];
+    return true;
+  } catch (error) {
+    console.error('Error loading dynamic data:', error);
+    // Fallback to default values if loading fails
+    about.skills = [
+      "React, Node.js, HTML5, CSS3",
+      "MongoDB, SQLite, MySQL",
+      "Python, JavaScript",
+      "Frontend Design (Figma)",
+      "Cloud Deployment & Server Management",
+      "Accessibility Implementation"
+    ];
+    about.experience = [
+      {
+        company: "Wonderkids School Website",
+        position: "Full-Stack Developer",
+        period: "OCT - NOV"
+      },
+      {
+        company: "IDIT Blackbucks",
+        position: "Python Full-Stack Intern",
+        period: "May 2024 - July 2024"
+      },
+      {
+        company: "Google",
+        position: "Android Developer (Virtual Internship)",
+        period: "OCT-DEC 2024"
+      }
+    ];
+    return false;
+  }
+}

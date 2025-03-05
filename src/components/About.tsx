@@ -1,10 +1,20 @@
 
+import { useState, useEffect } from 'react';
 import { useFadeInOnScroll } from '@/hooks/useAnimations';
-import { about } from '@/lib/data';
+import { about, loadDynamicData } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 export function About() {
   const { ref, isVisible } = useFadeInOnScroll(0.1);
+  const [dataLoaded, setDataLoaded] = useState(false);
+  
+  useEffect(() => {
+    async function fetchData() {
+      await loadDynamicData();
+      setDataLoaded(true);
+    }
+    fetchData();
+  }, []);
   
   return (
     <section id="about" className="py-20 px-6 md:px-12 bg-card/30">
