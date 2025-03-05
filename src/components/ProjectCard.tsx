@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Project } from '@/lib/data';
 import { cn } from '@/lib/utils';
+import { ExternalLink, Github, Info } from 'lucide-react';
 
 interface ProjectCardProps {
   project: Project;
@@ -11,8 +12,17 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
   
   const animationDelay = 100 + (index * 100);
+  
+  // Handle keyboard navigation for accessibility
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setIsFlipped(!isFlipped);
+    }
+  };
   
   return (
     <div 
@@ -23,12 +33,18 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
       style={{ transitionDelay: `${animationDelay}ms` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => setIsFlipped(!isFlipped)}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-pressed={isFlipped}
+      aria-label={`Project: ${project.title}. Press Enter to view details`}
     >
       <div className="h-56 md:h-64 perspective">
         <div 
           className={cn(
             "w-full h-full preserve-3d backface-hidden transition-all duration-700",
-            isHovered ? "rotate-y-180" : "rotate-y-0"
+            isFlipped ? "rotate-y-180" : "rotate-y-0"
           )}
         >
           {/* Front side - Image */}
@@ -56,6 +72,17 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
                 )}
               </div>
             </div>
+            
+            <button 
+              className="absolute top-3 right-3 p-2 bg-white/10 backdrop-blur-sm rounded-full"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsFlipped(true);
+              }}
+              aria-label="Flip card to see project details"
+            >
+              <Info className="w-4 h-4" />
+            </button>
           </div>
           
           {/* Back side - Details */}
@@ -76,11 +103,11 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-sm flex items-center gap-1 text-neon-blue hover:underline"
+                  onClick={(e) => e.stopPropagation()}
+                  aria-label={`Visit ${project.title} live site`}
                 >
                   Visit Site
-                  <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
+                  <ExternalLink className="w-4 h-4" />
                 </a>
               )}
               
@@ -90,11 +117,11 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-sm flex items-center gap-1 text-neon-blue hover:underline"
+                  onClick={(e) => e.stopPropagation()}
+                  aria-label={`View ${project.title} source code on GitHub`}
                 >
                   View Code
-                  <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
+                  <Github className="w-4 h-4" />
                 </a>
               )}
             </div>

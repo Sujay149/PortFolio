@@ -13,77 +13,75 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "project-1",
-    title: "Neural Interface",
-    description: "A minimalist application that connects humans and AI through a sleek, intuitive interface.",
-    tags: ["React", "TypeScript", "AI", "WebGL"],
-    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    url: "https://example.com/neural",
-    github: "https://github.com/example/neural-interface"
+    title: "Neurodivergent-Friendly Platform",
+    description: "A web platform designed for neurodivergent users featuring brain training games, sensory-friendly tools, and AI-powered recommendations. Includes text-to-speech, customizable themes, and focus/relaxation tools.",
+    tags: ["React", "Accessibility", "OpenDyslexic", "AI"],
+    image: "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    url: "https://example.com/neurodivergent-platform",
+    github: "https://github.com/sujaybabu/neurodivergent-platform"
   },
   {
     id: "project-2",
-    title: "Quantum Dashboard",
-    description: "Real-time data visualization platform with advanced filtering and customizable views.",
-    tags: ["React", "D3.js", "Realtime", "Dashboard"],
+    title: "MERN Full-stack Application",
+    description: "Comprehensive web application for Gujarat SIH (Smart India Hackathon) to manage research, IPR, innovation, and startup growth with centralized data management tools.",
+    tags: ["MongoDB", "Express", "React", "Node.js"],
     image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    url: "https://example.com/quantum"
+    url: "https://example.com/sih-gujarat"
   },
   {
     id: "project-3",
-    title: "Ethereal OS",
-    description: "A concept operating system interface that reimagines human-computer interaction.",
-    tags: ["Design", "Prototyping", "UX Research"],
-    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    github: "https://github.com/example/ethereal-os"
+    title: "Notes-Taking Application",
+    description: "Feature-rich notes-taking application developed during a Python Full-stack internship at IDIT Blackbucks with CRUD operations and user-friendly interface.",
+    tags: ["Python", "Django", "CRUD", "UI/UX"],
+    image: "https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    github: "https://github.com/sujaybabu/notes-app"
   }
 ];
 
 // About section data
 export const about = {
-  headline: "Designer & Developer",
-  bio: "I create digital experiences that merge aesthetics with functionality. Specializing in 3D interfaces and interactive design, I build products that feel intuitive and memorable.",
+  headline: "Full-Stack Developer",
+  bio: "I'm Thota Sujay Babu, a passionate Full-Stack Developer with a B.Tech in Computer Science from SRKR Engineering College. I specialize in creating innovative, accessible solutions with a focus on user experience and performance optimization.",
   skills: [
-    "3D Modeling & Animation",
-    "UI/UX Design",
-    "Frontend Development",
-    "React.js / Three.js",
-    "WebGL & GLSL"
+    "React, Node.js, HTML5, CSS3",
+    "MongoDB, SQLite, MySQL",
+    "Python, JavaScript",
+    "Frontend Design (Figma)",
+    "Cloud Deployment & Server Management",
+    "Accessibility Implementation"
   ],
   experience: [
     {
-      company: "Future Labs",
-      position: "Senior Interface Designer",
-      period: "2022 - Present"
+      company: "Wonderkids School Website",
+      position: "Full-Stack Developer",
+      period: "OCT - NOV"
     },
     {
-      company: "Digital Architects",
-      position: "Frontend Developer",
-      period: "2019 - 2022"
+      company: "IDIT Blackbucks",
+      position: "Python Full-Stack Intern",
+      period: "May 2024 - July 2024"
     },
     {
-      company: "Creative Solutions",
-      position: "UI Designer",
-      period: "2017 - 2019"
+      company: "Google",
+      position: "Android Developer (Virtual Internship)",
+      period: "OCT-DEC 2024"
     }
   ]
 };
 
 // Contact information
 export const contact = {
-  email: "hello@example.com",
-  location: "San Francisco, CA",
+  email: "sujayss149@gmail.com",
+  phone: "+91 9346491221",
+  location: "Bhimavaram, Andhra Pradesh",
   social: [
     {
       name: "GitHub",
-      url: "https://github.com/example"
+      url: "https://github.com/sujaybabu"
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/example"
-    },
-    {
-      name: "Twitter",
-      url: "https://twitter.com/example"
+      url: "https://linkedin.com/in/sujaybabu"
     }
   ]
 };
