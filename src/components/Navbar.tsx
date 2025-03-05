@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import { Download } from 'lucide-react';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,6 +38,14 @@ export function Navbar() {
           <NavLink href="#projects">Projects</NavLink>
           <NavLink href="#about">About</NavLink>
           <NavLink href="#contact">Contact</NavLink>
+          <a 
+            href="/resume.pdf" 
+            download
+            className="flex items-center gap-2 px-4 py-2 rounded-lg glass-panel bg-neon-blue/10 hover:bg-neon-blue/20 transition-all duration-300"
+          >
+            <Download size={16} />
+            <span>Resume</span>
+          </a>
         </div>
         
         <button className="block md:hidden">

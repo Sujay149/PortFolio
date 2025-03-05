@@ -40,6 +40,7 @@ export const projects: Project[] = [
 
 // About section data
 export const about = {
+  name: "Thota Sujay Babu",
   headline: "Full-Stack Developer",
   bio: "I'm Thota Sujay Babu, a passionate Full-Stack Developer with a B.Tech in Computer Science from SRKR Engineering College. I specialize in creating innovative, accessible solutions with a focus on user experience and performance optimization.",
   skills: [

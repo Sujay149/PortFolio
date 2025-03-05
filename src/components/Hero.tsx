@@ -2,12 +2,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDelayedAnimation, useMousePosition } from '@/hooks/useAnimations';
 import { cn } from '@/lib/utils';
+import { about } from '@/lib/data';
 
 export function Hero() {
   const title1Animated = useDelayedAnimation(300);
   const title2Animated = useDelayedAnimation(600);
   const subtitleAnimated = useDelayedAnimation(900);
   const ctaAnimated = useDelayedAnimation(1200);
+  const profilePicAnimated = useDelayedAnimation(200);
   
   const mousePosition = useMousePosition();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -65,60 +67,78 @@ export function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
       
       {/* Content */}
-      <div className="relative max-w-3xl mx-auto text-center z-10">
-        <h1 className="flex flex-col items-center">
-          <span 
-            className={cn(
-              "text-5xl md:text-7xl font-bold leading-tight opacity-0 transform translate-y-6 transition-all duration-700 ease-out",
-              title1Animated && "opacity-100 translate-y-0"
-            )}
-          >
-            Crafting Digital
-          </span>
-          <span 
-            className={cn(
-              "text-5xl md:text-7xl font-bold leading-tight text-gradient-blue mt-2 opacity-0 transform translate-y-6 transition-all duration-700 ease-out delay-100",
-              title2Animated && "opacity-100 translate-y-0"
-            )}
-          >
-            Experiences
-          </span>
-        </h1>
-        
-        <p 
-          className={cn(
-            "mt-6 text-xl text-muted-foreground max-w-xl mx-auto opacity-0 transform translate-y-6 transition-all duration-700 ease-out delay-200",
-            subtitleAnimated && "opacity-100 translate-y-0"
-          )}
-        >
-          Designing and developing interfaces that blend aesthetics with function.
-          Interactive 3D experiences that engage and inspire.
-        </p>
-        
+      <div className="relative max-w-4xl mx-auto z-10 flex flex-col md:flex-row items-center gap-8 md:gap-12">
+        {/* Profile image */}
         <div 
           className={cn(
-            "mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 transform translate-y-6 transition-all duration-700 ease-out delay-300",
-            ctaAnimated && "opacity-100 translate-y-0"
+            "relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden opacity-0 transform translate-y-6 transition-all duration-700 ease-out",
+            profilePicAnimated && "opacity-100 translate-y-0"
           )}
         >
-          <a 
-            href="#projects" 
-            className="px-6 py-3 rounded-lg glass-panel hover:bg-white/10 transition-all duration-300 group"
-          >
-            <span className="flex items-center gap-2">
-              View Projects
-              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-neon-blue to-neon-cyan opacity-70 blur-md"></div>
+          <div className="absolute inset-0 rounded-full border-2 border-neon-blue/30"></div>
+          <img 
+            src="/lovable-uploads/3b0b3afa-d423-4758-b4dc-6c6092cb1ff0.png" 
+            alt={`${about.name || 'Portfolio Owner'} profile picture`}
+            className="w-full h-full object-cover rounded-full z-10 relative" 
+          />
+        </div>
+        
+        <div className="text-center md:text-left">
+          <h1 className="flex flex-col items-center md:items-start">
+            <span 
+              className={cn(
+                "text-5xl md:text-7xl font-bold leading-tight opacity-0 transform translate-y-6 transition-all duration-700 ease-out",
+                title1Animated && "opacity-100 translate-y-0"
+              )}
+            >
+              Crafting Digital
             </span>
-          </a>
+            <span 
+              className={cn(
+                "text-5xl md:text-7xl font-bold leading-tight text-gradient-blue mt-2 opacity-0 transform translate-y-6 transition-all duration-700 ease-out delay-100",
+                title2Animated && "opacity-100 translate-y-0"
+              )}
+            >
+              Experiences
+            </span>
+          </h1>
           
-          <a 
-            href="#contact" 
-            className="px-6 py-3 rounded-lg border border-white/20 hover:border-white/40 transition-all duration-300"
+          <p 
+            className={cn(
+              "mt-6 text-xl text-muted-foreground max-w-xl opacity-0 transform translate-y-6 transition-all duration-700 ease-out delay-200",
+              subtitleAnimated && "opacity-100 translate-y-0"
+            )}
           >
-            Contact Me
-          </a>
+            Designing and developing interfaces that blend aesthetics with function.
+            Interactive 3D experiences that engage and inspire.
+          </p>
+          
+          <div 
+            className={cn(
+              "mt-10 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 opacity-0 transform translate-y-6 transition-all duration-700 ease-out delay-300",
+              ctaAnimated && "opacity-100 translate-y-0"
+            )}
+          >
+            <a 
+              href="#projects" 
+              className="px-6 py-3 rounded-lg glass-panel hover:bg-white/10 transition-all duration-300 group"
+            >
+              <span className="flex items-center gap-2">
+                View Projects
+                <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </span>
+            </a>
+            
+            <a 
+              href="#contact" 
+              className="px-6 py-3 rounded-lg border border-white/20 hover:border-white/40 transition-all duration-300"
+            >
+              Contact Me
+            </a>
+          </div>
         </div>
       </div>
       
