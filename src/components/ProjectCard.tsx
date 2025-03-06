@@ -40,7 +40,7 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
       aria-pressed={isFlipped}
       aria-label={`Project: ${project.title}. Press Enter to view details`}
     >
-      <div className="h-64 md:h-72 perspective">
+      <div className="h-auto min-h-[300px] md:min-h-[350px] perspective">
         <div 
           className={cn(
             "w-full h-full preserve-3d backface-hidden transition-all duration-700",
@@ -59,7 +59,7 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             <div className="absolute bottom-4 left-4">
               <h3 className="text-xl font-semibold">{project.title}</h3>
-              <div className="flex gap-2 mt-2">
+              <div className="flex flex-wrap gap-2 mt-2 max-w-[calc(100%-2rem)]">
                 {project.tags.slice(0, 2).map((tag, i) => (
                   <span key={i} className="text-xs font-medium py-1 px-2 rounded-full bg-black/30 backdrop-blur-sm">
                     {tag}
@@ -96,7 +96,7 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
                 </span>
               ))}
             </div>
-            <div className="flex gap-3 mt-4">
+            <div className="flex flex-wrap gap-3 mt-4">
               {project.url && (
                 <a 
                   href={project.url} 

@@ -2,9 +2,71 @@
 import { useFadeInOnScroll } from '@/hooks/useAnimations';
 import { contact } from '@/lib/data';
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 export function Contact() {
   const { ref, isVisible } = useFadeInOnScroll(0.1);
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate form
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Error",
+        description: "Please fill in all fields",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Create mailto URL with subject and body
+      const subject = `Portfolio Contact from ${formData.name}`;
+      const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+      const mailtoUrl = `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      // Open the default mail client
+      window.location.href = mailtoUrl;
+      
+      // Show success message
+      toast({
+        title: "Success!",
+        description: "Your email client has been opened. Please send the email to complete your message.",
+      });
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive"
+      });
+      console.error("Error sending message:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   
   return (
     <section id="contact" className="py-20 px-6 md:px-12">
@@ -48,7 +110,7 @@ export function Contact() {
           >
             <h3 className="text-lg font-semibold mb-6">Send a Message</h3>
             
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-1">
                   Name
@@ -56,6 +118,8 @@ export function Contact() {
                 <input
                   type="text"
                   id="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 rounded-lg bg-secondary/50 border border-white/10 focus:outline-none focus:ring-1 focus:ring-neon-blue/50 transition-all"
                   placeholder="Your name"
                 />
@@ -68,6 +132,8 @@ export function Contact() {
                 <input
                   type="email"
                   id="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 rounded-lg bg-secondary/50 border border-white/10 focus:outline-none focus:ring-1 focus:ring-neon-blue/50 transition-all"
                   placeholder="Your email"
                 />
@@ -80,6 +146,8 @@ export function Contact() {
                 <textarea
                   id="message"
                   rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 rounded-lg bg-secondary/50 border border-white/10 focus:outline-none focus:ring-1 focus:ring-neon-blue/50 transition-all resize-none"
                   placeholder="Your message"
                 ></textarea>
@@ -87,9 +155,10 @@ export function Contact() {
               
               <button
                 type="submit"
-                className="w-full py-3 rounded-lg bg-gradient-to-r from-neon-blue/80 to-neon-cyan/80 hover:from-neon-blue hover:to-neon-cyan text-white font-medium transition-all transform hover:-translate-y-1 hover:shadow-lg hover:shadow-neon-blue/20"
+                disabled={isSubmitting}
+                className="w-full py-3 rounded-lg bg-gradient-to-r from-neon-blue/80 to-neon-cyan/80 hover:from-neon-blue hover:to-neon-cyan text-white font-medium transition-all transform hover:-translate-y-1 hover:shadow-lg hover:shadow-neon-blue/20 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>
@@ -111,7 +180,7 @@ export function Contact() {
                   </svg>
                   <div>
                     <div className="text-sm text-muted-foreground">Email</div>
-                    <a href={`mailto:${contact.email}`} className="hover:text-neon-blue transition-colors">
+                    <a href={`mailto:${contact.email}`} className="hover:text-neon-blue transition-colors break-all">
                       {contact.email}
                     </a>
                   </div>

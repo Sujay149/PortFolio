@@ -9,7 +9,7 @@ export function Projects() {
   const animatedItems = useSequentialAnimation(projects.length, 100, 150);
   
   return (
-    <section id="projects" className="py-20 px-6 md:px-12">
+    <section id="projects" className="py-20 px-4 sm:px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <div ref={ref} className="mb-12">
           <div 
@@ -41,7 +41,7 @@ export function Projects() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <ProjectCard 
               key={project.id} 
