@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useFadeInOnScroll } from '@/hooks/useAnimations';
 import { about, loadDynamicData } from '@/lib/data';
 import { cn } from '@/lib/utils';
+import { ExternalLink, Github } from 'lucide-react';
 
 export function About() {
   const { ref, isVisible } = useFadeInOnScroll(0.1);
@@ -61,7 +62,36 @@ export function About() {
                   <div key={index} className="glass-panel p-4 rounded-lg">
                     <div className="text-sm text-muted-foreground">{exp.period}</div>
                     <div className="font-medium">{exp.position}</div>
-                    <div className="text-sm">{exp.company}</div>
+                    <div className="text-sm mb-3">{exp.company}</div>
+                    
+                    {/* Links section */}
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {exp.url && (
+                        <a 
+                          href={exp.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs flex items-center gap-1 text-neon-blue hover:underline p-1.5 glass-panel"
+                          aria-label={`Visit ${exp.company} site`}
+                        >
+                          <span className="truncate">Visit Site</span>
+                          <ExternalLink className="w-3 h-3 flex-shrink-0" />
+                        </a>
+                      )}
+                      
+                      {exp.github && (
+                        <a 
+                          href={exp.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs flex items-center gap-1 text-neon-blue hover:underline p-1.5 glass-panel"
+                          aria-label={`View ${exp.company} code on GitHub`}
+                        >
+                          <span className="truncate">View Code</span>
+                          <Github className="w-3 h-3 flex-shrink-0" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

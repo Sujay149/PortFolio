@@ -92,6 +92,24 @@ export function Projects() {
                 />
               </div>
               
+              {/* Preview Images */}
+              {selectedProject.previewImages && selectedProject.previewImages.length > 0 && (
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold mb-3">Preview Images</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {selectedProject.previewImages.map((img, idx) => (
+                      <div key={idx} className="rounded-lg overflow-hidden">
+                        <img 
+                          src={img} 
+                          alt={`${selectedProject.title} preview ${idx + 1}`} 
+                          className="w-full h-auto object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
               <div className="space-y-6">
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Overview</h3>
@@ -112,7 +130,7 @@ export function Projects() {
                   </div>
                 </div>
                 
-                <div className="flex gap-4 pt-4">
+                <div className="flex flex-wrap gap-4 pt-4">
                   {selectedProject.url && (
                     <a 
                       href={selectedProject.url}

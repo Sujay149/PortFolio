@@ -11,6 +11,15 @@ export type Project = {
   previewImages?: string[]; // Added preview images array
 };
 
+// Updated Experience type to include url and github fields
+export type Experience = {
+  company: string;
+  position: string;
+  period: string;
+  url?: string;      // Added optional URL for visit site
+  github?: string;   // Added optional GitHub for view code
+};
+
 export const projects: Project[] = [
   {
     id: "project-1",
@@ -102,17 +111,23 @@ export async function loadDynamicData() {
       {
         company: "Wonderkids School Website",
         position: "Full-Stack Developer",
-        period: "OCT - NOV"
+        period: "OCT - NOV",
+        url: "https://wonderkids-school.example.com",
+        github: "https://github.com/sujaybabu/wonderkids-school"
       },
       {
         company: "IDIT Blackbucks",
         position: "Python Full-Stack Intern",
-        period: "May 2024 - July 2024"
+        period: "May 2024 - July 2024",
+        url: "https://idit-blackbucks.example.com",
+        github: "https://github.com/sujaybabu/idit-notes-app"
       },
       {
         company: "Google",
         position: "Android Developer (Virtual Internship)",
-        period: "OCT-DEC 2024"
+        period: "OCT-DEC 2024",
+        url: "https://developers.google.com/training",
+        github: "https://github.com/sujaybabu/android-basics"
       }
     ];
     return false;
