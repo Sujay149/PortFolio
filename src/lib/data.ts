@@ -8,6 +8,7 @@ export type Project = {
   image: string;
   url?: string;
   github?: string;
+  previewImages?: string[]; // Added preview images array
 };
 
 export const projects: Project[] = [
@@ -18,7 +19,11 @@ export const projects: Project[] = [
     tags: ["React", "Accessibility", "OpenDyslexic", "AI"],
     image: "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     url: "https://example.com/neurodivergent-platform",
-    github: "https://github.com/sujaybabu/neurodivergent-platform"
+    github: "https://github.com/sujaybabu/neurodivergent-platform",
+    previewImages: [
+      "https://images.unsplash.com/photo-1551739440-5dd934d3a94a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1551739440-5dd934d3a94a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     id: "project-2",
@@ -26,7 +31,10 @@ export const projects: Project[] = [
     description: "Comprehensive web application for Gujarat SIH (Smart India Hackathon) to manage research, IPR, innovation, and startup growth with centralized data management tools.",
     tags: ["MongoDB", "Express", "React", "Node.js"],
     image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    url: "https://example.com/sih-gujarat"
+    url: "https://example.com/sih-gujarat",
+    previewImages: [
+      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    ]
   },
   {
     id: "project-3",
@@ -34,7 +42,10 @@ export const projects: Project[] = [
     description: "Feature-rich notes-taking application developed during a Python Full-stack internship at IDIT Blackbucks with CRUD operations and user-friendly interface.",
     tags: ["Python", "Django", "CRUD", "UI/UX"],
     image: "https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    github: "https://github.com/sujaybabu/notes-app"
+    github: "https://github.com/sujaybabu/notes-app",
+    previewImages: [
+      "https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    ]
   }
 ];
 

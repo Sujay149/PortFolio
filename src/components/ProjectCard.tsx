@@ -3,14 +3,22 @@ import { useState } from 'react';
 import { Project } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { ExternalLink, Github, Info } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface ProjectCardProps {
   project: Project;
   isAnimated: boolean;
   index: number;
+  onOpenDetails: (project: Project) => void;
 }
 
-export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
+export function ProjectCard({ project, isAnimated, index, onOpenDetails }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   
@@ -33,14 +41,12 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
       style={{ transitionDelay: `${animationDelay}ms` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => setIsFlipped(!isFlipped)}
-      onKeyDown={handleKeyDown}
       tabIndex={0}
       role="button"
       aria-pressed={isFlipped}
       aria-label={`Project: ${project.title}. Press Enter to view details`}
     >
-      <div className="h-auto min-h-[300px] md:min-h-[350px] perspective">
+      <div className="h-auto min-h-[350px] md:min-h-[400px] perspective">
         <div 
           className={cn(
             "w-full h-full preserve-3d backface-hidden transition-all duration-700",
@@ -49,11 +55,18 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
         >
           {/* Front side - Image */}
           <div 
-            className="h-full w-full absolute backface-hidden overflow-hidden"
+            className="h-full w-full absolute backface-hidden overflow-hidden cursor-pointer"
             style={{
               backgroundImage: `url(${project.image})`, 
               backgroundSize: 'cover', 
               backgroundPosition: 'center'
+            }}
+            onClick={() => onOpenDetails(project)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onOpenDetails(project);
+              }
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -102,7 +115,7 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
                   href={project.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-sm flex items-center gap-1 text-neon-blue hover:underline"
+                  className="text-sm flex items-center gap-1 text-neon-blue hover:underline p-2 glass-panel"
                   onClick={(e) => e.stopPropagation()}
                   aria-label={`Visit ${project.title} live site`}
                 >
@@ -116,7 +129,7 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
                   href={project.github} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-sm flex items-center gap-1 text-neon-blue hover:underline"
+                  className="text-sm flex items-center gap-1 text-neon-blue hover:underline p-2 glass-panel"
                   onClick={(e) => e.stopPropagation()}
                   aria-label={`View ${project.title} source code on GitHub`}
                 >
@@ -125,6 +138,12 @@ export function ProjectCard({ project, isAnimated, index }: ProjectCardProps) {
                 </a>
               )}
             </div>
+            <button
+              onClick={() => setIsFlipped(false)}
+              className="mt-4 p-2 glass-panel text-sm text-center"
+            >
+              Go Back
+            </button>
           </div>
         </div>
       </div>
