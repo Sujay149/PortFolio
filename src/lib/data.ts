@@ -1,4 +1,3 @@
-
 // Project data for the portfolio
 export type Project = {
   id: string;
@@ -11,13 +10,16 @@ export type Project = {
   previewImages?: string[]; // Added preview images array
 };
 
-// Updated Experience type to include url and github fields
+// Updated Experience type to include url, github, description and previewImages fields
 export type Experience = {
   company: string;
   position: string;
   period: string;
-  url?: string;      // Added optional URL for visit site
-  github?: string;   // Added optional GitHub for view code
+  url?: string;      // URL for visit site
+  github?: string;   // GitHub for view code
+  description?: string; // Description of the experience
+  previewImages?: string[]; // Preview images for the experience
+  tags?: string[];   // Technology tags used
 };
 
 export const projects: Project[] = [

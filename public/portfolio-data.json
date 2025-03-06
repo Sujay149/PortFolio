@@ -14,21 +14,39 @@
       "position": "Full-Stack Developer",
       "period": "OCT - NOV",
       "url": "https://wonderkids-school.example.com",
-      "github": "https://github.com/sujaybabu/wonderkids-school"
+      "github": "https://github.com/sujaybabu/wonderkids-school",
+      "description": "Developed a comprehensive school management system with features for students, teachers, and administrators. The system includes attendance tracking, grade management, and communication tools.",
+      "previewImages": [
+        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ],
+      "tags": ["React", "Node.js", "MongoDB", "Express"]
     },
     {
       "company": "IDIT Blackbucks",
       "position": "Python Full-Stack Intern",
       "period": "May 2024 - July 2024",
       "url": "https://idit-blackbucks.example.com",
-      "github": "https://github.com/sujaybabu/idit-notes-app"
+      "github": "https://github.com/sujaybabu/idit-notes-app",
+      "description": "Created a notes application using Python and Django. Implemented user authentication, note creation, editing, and sharing functionalities. Optimized database queries for better performance.",
+      "previewImages": [
+        "https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ],
+      "tags": ["Python", "Django", "SQLite", "Bootstrap"]
     },
     {
       "company": "Google",
       "position": "Android Developer (Virtual Internship)",
       "period": "OCT-DEC 2024",
       "url": "https://developers.google.com/training",
-      "github": "https://github.com/sujaybabu/android-basics"
+      "github": "https://github.com/sujaybabu/android-basics",
+      "description": "Participated in Google's virtual internship program for Android development. Built multiple Android applications using Kotlin and Java. Learned about modern Android architecture patterns and best practices.",
+      "previewImages": [
+        "https://images.unsplash.com/photo-1551739440-5dd934d3a94a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+      ],
+      "tags": ["Android", "Kotlin", "Java", "Material Design"]
     }
   ]
 }
