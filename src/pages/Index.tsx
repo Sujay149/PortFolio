@@ -7,6 +7,7 @@ import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import AccessibilityPanel from '@/components/AccessibilityPanel';
+import CustomCursor from '@/components/CustomCursor';
 
 const Index = () => {
   const [fontFamily, setFontFamily] = useState('Inter');
@@ -21,6 +22,7 @@ const Index = () => {
       ${highContrast ? 'high-contrast' : ''} 
       ${reducedMotion ? 'motion-reduce' : ''}`}
     >
+      <CustomCursor />
       <AccessibilityPanel 
         fontFamily={fontFamily} 
         setFontFamily={setFontFamily}

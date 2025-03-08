@@ -23,7 +23,15 @@ export function Projects() {
   };
   
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 md:px-12 bg-background/50">
+    <section id="projects" className="py-20 px-4 sm:px-6 md:px-12 bg-background/50 relative">
+      {/* Background elements */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-neon-blue/5 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-neon-blue/5 to-transparent"></div>
+        <div className="absolute top-1/3 right-10 w-20 h-20 border border-neon-blue/10 rounded-full opacity-50"></div>
+        <div className="absolute bottom-1/4 left-20 w-32 h-32 border border-neon-cyan/10 rounded-full opacity-30"></div>
+      </div>
+      
       <div className="max-w-7xl mx-auto">
         <div ref={ref} className="mb-12 text-center">
           <div 
@@ -69,7 +77,7 @@ export function Projects() {
 
       {/* Project Details Dialog */}
       <Dialog open={selectedProject !== null} onOpenChange={(open) => !open && setSelectedProject(null)}>
-        <DialogContent className="max-w-3xl w-[90vw] max-h-[90vh] overflow-y-auto glass-panel border-none">
+        <DialogContent className="max-w-4xl w-[90vw] max-h-[90vh] overflow-y-auto glass-panel border-none">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold">{selectedProject?.title}</DialogTitle>
             <button 
@@ -97,7 +105,7 @@ export function Projects() {
                   <h3 className="text-lg font-semibold mb-3">Preview Images</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {selectedProject.previewImages.map((img, idx) => (
-                      <div key={idx} className="rounded-lg overflow-hidden">
+                      <div key={idx} className="rounded-lg overflow-hidden glass-panel hover-lift">
                         <img 
                           src={img} 
                           alt={`${selectedProject.title} preview ${idx + 1}`} 

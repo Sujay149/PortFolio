@@ -8,10 +8,10 @@
 
 @layer base {
   :root {
-    --background: 240 25% 6%;
+    --background: 240 25% 4%;
     --foreground: 210 40% 98%;
 
-    --card: 240 25% 8%;
+    --card: 240 25% 7%;
     --card-foreground: 210 40% 98%;
 
     --popover: 240 25% 4%;
@@ -20,7 +20,7 @@
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 240 15% 13%;
+    --secondary: 240 15% 10%;
     --secondary-foreground: 210 40% 98%;
 
     --muted: 240 9% 25%;
@@ -44,6 +44,7 @@
 
   * {
     @apply border-border selection:bg-white/10 selection:text-white;
+    cursor: none;
   }
   
   body {
@@ -138,6 +139,79 @@
     transition: none !important;
     transform: none !important;
   }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-rotate-slow {
+    animation: rotate-slow 12s linear infinite;
+  }
+
+  .animate-fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.5s forwards;
+  }
+
+  .animate-slide-in-left {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInLeft 0.5s forwards;
+  }
+
+  .animate-slide-in-right {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideInRight 0.5s forwards;
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-5px);
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes rotate-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 /* Custom scroll bar for the entire page */
@@ -173,3 +247,35 @@ canvas {
   pointer-events: none;
 }
 
+/* Custom cursor styles */
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid hsl(var(--neon-blue));
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.2s ease;
+}
+
+.custom-cursor-dot {
+  width: 5px;
+  height: 5px;
+  background-color: hsl(var(--neon-blue));
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease;
+}
+
+.hover-target .custom-cursor {
+  transform: scale(1.5);
+}
+
+.hover-target .custom-cursor-dot {
+  transform: scale(1.2);
+}

@@ -70,7 +70,14 @@ export function Contact() {
   };
   
   return (
-    <section id="contact" className="py-20 px-6 md:px-12 bg-gradient-to-b from-background/80 to-background">
+    <section id="contact" className="py-20 px-6 md:px-12 bg-gradient-to-b from-background/80 to-background relative">
+      {/* Background elements */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-neon-blue/5 to-transparent opacity-30"></div>
+        <div className="absolute -top-10 -right-10 w-40 h-40 border border-white/5 rounded-full"></div>
+        <div className="absolute bottom-20 left-10 w-20 h-20 border border-white/5 rounded-full"></div>
+      </div>
+      
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="inline-block py-1 px-3 rounded-full text-sm bg-secondary/50 text-muted-foreground mb-4">
@@ -158,7 +165,7 @@ export function Contact() {
             )}
             style={{ transitionDelay: '200ms' }}
           >
-            <div className="glass-panel p-8 rounded-xl shadow-xl mb-8">
+            <div className="glass-panel p-8 rounded-xl shadow-xl mb-8 hover-lift">
               <h3 className="text-xl font-bold mb-6">Contact Information</h3>
               
               <div className="space-y-6">
@@ -186,7 +193,7 @@ export function Contact() {
               </div>
             </div>
             
-            <div className="glass-panel p-8 rounded-xl shadow-xl">
+            <div className="glass-panel p-8 rounded-xl shadow-xl hover-lift">
               <h3 className="text-xl font-bold mb-6">Connect with Me</h3>
               
               <div className="flex space-x-4">

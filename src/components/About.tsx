@@ -18,7 +18,15 @@ export function About() {
   }, []);
   
   return (
-    <section id="about" className="py-20 px-6 md:px-12 bg-gradient-to-b from-background to-background/80">
+    <section id="about" className="py-20 px-6 md:px-12 bg-gradient-to-b from-background to-background/80 relative">
+      {/* Background elements */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -top-20 -right-20 w-64 h-64 border border-white/5 rounded-full"></div>
+        <div className="absolute bottom-40 left-10 w-40 h-40 border border-white/5 rounded-full"></div>
+        <div className="absolute top-1/3 left-1/4 w-6 h-6 bg-neon-blue/20 rounded-full blur-md animate-float" style={{animationDelay: '-2s'}}></div>
+        <div className="absolute bottom-1/3 right-1/4 w-4 h-4 bg-neon-cyan/20 rounded-full blur-md animate-float" style={{animationDelay: '-1s'}}></div>
+      </div>
+      
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div 
@@ -48,7 +56,11 @@ export function About() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {about.skills.map((skill, index) => (
-                <div key={index} className="glass-panel p-4 rounded-lg flex items-start">
+                <div 
+                  key={index} 
+                  className="glass-panel p-4 rounded-lg flex items-start hover-lift"
+                  style={{transitionDelay: `${index * 50}ms`}}
+                >
                   <div className="w-2 h-2 bg-neon-blue rounded-full mt-2 mr-3 flex-shrink-0"></div>
                   <span>{skill}</span>
                 </div>
@@ -69,7 +81,11 @@ export function About() {
             
             <div className="space-y-6">
               {about.experience.map((exp, index) => (
-                <div key={index} className="glass-panel p-5 rounded-lg relative">
+                <div 
+                  key={index} 
+                  className="glass-panel p-5 rounded-lg relative hover-lift"
+                  style={{transitionDelay: `${index * 100}ms`}}
+                >
                   <div className="absolute -left-3 top-5 w-6 h-6 rounded-full bg-neon-blue flex items-center justify-center">
                     <div className="w-3 h-3 bg-background rounded-full"></div>
                   </div>

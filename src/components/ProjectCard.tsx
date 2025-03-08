@@ -1,5 +1,4 @@
 
-import { useState, useRef, useEffect } from 'react';
 import { Project } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { ExternalLink, Github, Info } from 'lucide-react';
@@ -20,12 +19,14 @@ export function ProjectCard({ project, isAnimated, index, onOpenDetails }: Proje
     <div 
       ref={ref}
       className={cn(
-        "rounded-xl overflow-hidden opacity-0 transform translate-y-10 transition-all duration-500 bg-card/30 shadow-lg hover:shadow-xl",
+        "rounded-xl overflow-hidden opacity-0 transform translate-y-10 transition-all duration-500 glass-panel border border-white/10 hover:border-neon-blue/30 shadow-lg hover:shadow-xl",
         isAnimated && "opacity-100 translate-y-0"
       )}
       style={{ 
         transitionDelay: `${index * 150}ms`,
-        transform: isAnimated ? `translateY(0)` : 'translateY(10px)',
+        transform: isAnimated 
+          ? `translateY(0) perspective(1000px) rotateX(${isHovered ? '2deg' : '0'}) rotateY(${isHovered ? '2deg' : '0'})` 
+          : 'translateY(10px)',
       }}
       onMouseEnter={bindHoverEvents.onMouseEnter}
       onMouseLeave={bindHoverEvents.onMouseLeave}
@@ -40,11 +41,11 @@ export function ProjectCard({ project, isAnimated, index, onOpenDetails }: Proje
         }
       }}
     >
-      <div className="relative aspect-video">
+      <div className="relative aspect-video overflow-hidden">
         <img 
           src={project.image} 
           alt={project.title}
-          className="w-full h-full object-cover transform scale-100 transition-transform duration-500"
+          className="w-full h-full object-cover transition-transform duration-500"
           style={{
             transform: isHovered ? 'scale(1.05)' : 'scale(1)'
           }}
@@ -55,7 +56,7 @@ export function ProjectCard({ project, isAnimated, index, onOpenDetails }: Proje
           <span className="inline-block px-2 py-1 rounded text-xs font-medium bg-neon-blue/80 text-white mb-2 w-max">
             {project.tags[0]}
           </span>
-          <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">{project.title}</h3>
           <p className="text-sm text-white/80 line-clamp-2 mb-4">{project.description}</p>
           
           <div className="flex gap-3">
@@ -64,10 +65,10 @@ export function ProjectCard({ project, isAnimated, index, onOpenDetails }: Proje
                 href={project.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="px-3 py-1 rounded text-xs bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors flex items-center gap-1"
+                className="px-3 py-1.5 rounded text-xs bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors flex items-center gap-1"
                 onClick={(e) => e.stopPropagation()}
               >
-                <span>Live Demo</span>
+                <span>Visit Site</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             )}
@@ -77,13 +78,24 @@ export function ProjectCard({ project, isAnimated, index, onOpenDetails }: Proje
                 href={project.github} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="px-3 py-1 rounded text-xs bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors flex items-center gap-1"
+                className="px-3 py-1.5 rounded text-xs bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors flex items-center gap-1"
                 onClick={(e) => e.stopPropagation()}
               >
-                <span>Code</span>
+                <span>View Code</span>
                 <Github className="w-3 h-3" />
               </a>
             )}
+            
+            <button
+              className="px-3 py-1.5 rounded text-xs bg-neon-blue/80 backdrop-blur-sm hover:bg-neon-blue transition-colors flex items-center gap-1 ml-auto"
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenDetails(project);
+              }}
+            >
+              <span>Details</span>
+              <Info className="w-3 h-3" />
+            </button>
           </div>
         </div>
       </div>
