@@ -1,13 +1,13 @@
 
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
+import About from '@/components/About';
 import Footer from '@/components/Footer';
 import AccessibilityPanel from '@/components/AccessibilityPanel';
 import CustomCursor from '@/components/CustomCursor';
 import { loadDynamicData } from '@/lib/data';
 
-const Index = () => {
+const AboutPage = () => {
   const [fontFamily, setFontFamily] = useState('Inter');
   const [fontSize, setFontSize] = useState('medium');
   const [highContrast, setHighContrast] = useState(false);
@@ -46,10 +46,12 @@ const Index = () => {
         setReducedMotion={setReducedMotion}
       />
       <Navbar />
-      <Hero />
+      <div className="pt-24">
+        <About />
+      </div>
       <Footer />
     </div>
   );
 }
 
-export default Index;
+export default AboutPage;
