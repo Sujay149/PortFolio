@@ -21,6 +21,7 @@ export default {
     extend: {
       fontFamily: {
         'dyslexic': ['OpenDyslexic', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -73,10 +74,20 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        "rotate-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "float": "float 6s ease-in-out infinite",
+        "rotate-slow": "rotate-slow 12s linear infinite",
       },
       rotate: {
         'y-180': 'rotateY(180deg)',

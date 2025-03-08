@@ -154,3 +154,71 @@ export function useHoverAnimation() {
   
   return { isHovered, bindHoverEvents };
 }
+
+// New hooks for page transitions
+export function usePageTransition() {
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  
+  const startTransition = () => {
+    setIsTransitioning(true);
+    return new Promise<void>(resolve => {
+      setTimeout(() => {
+        setIsTransitioning(false);
+        resolve();
+      }, 500);
+    });
+  };
+  
+  return { isTransitioning, startTransition };
+}
+
+// New hook for staggered text animation
+export function useStaggeredText(text: string, delay = 30) {
+  const [displayedText, setDisplayedText] = useState('');
+  
+  useEffect(() => {
+    setDisplayedText('');
+    let currentIndex = 0;
+    
+    const interval = setInterval(() => {
+      if (currentIndex < text.length) {
+        setDisplayedText(prev => prev + text[currentIndex]);
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+      }
+    }, delay);
+    
+    return () => clearInterval(interval);
+  }, [text, delay]);
+  
+  return displayedText;
+}
+
+// New hook for counter animation
+export function useCounterAnimation(endValue: number, duration = 2000) {
+  const [count, setCount] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  
+  const startAnimation = () => {
+    setIsAnimating(true);
+    const startTime = Date.now();
+    
+    const animate = () => {
+      const currentTime = Date.now();
+      const progress = Math.min(1, (currentTime - startTime) / duration);
+      
+      setCount(Math.floor(progress * endValue));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setIsAnimating(false);
+      }
+    };
+    
+    requestAnimationFrame(animate);
+  };
+  
+  return { count, isAnimating, startAnimation };
+}
