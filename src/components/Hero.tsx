@@ -1,6 +1,6 @@
 
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
-import { about } from '@/lib/data';
+import { about, contact, projects } from '@/lib/data';
 
 export function Hero() {
   return (
@@ -19,7 +19,7 @@ export function Hero() {
         </h1>
         
         <p className="text-xl md:text-2xl font-normal">
-          I also maintain projects like <a href={about.projects?.[0]?.github || '#'} className="underline">Neurodivergent-Friendly Platform</a>.
+          I also maintain projects like <a href={projects[0]?.github || '#'} className="underline">Neurodivergent-Friendly Platform</a>.
         </p>
         
         <div className="flex items-center space-x-5 mt-6 pt-2">
@@ -34,7 +34,7 @@ export function Hero() {
           </a>
           
           <a 
-            href={about.social?.[0]?.url || "https://github.com/sujaybabu"} 
+            href={contact.social[0]?.url || "https://github.com/sujaybabu"} 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition-colors"
@@ -44,7 +44,7 @@ export function Hero() {
           </a>
           
           <a 
-            href={about.social?.[1]?.url || "https://linkedin.com/in/sujaybabu"} 
+            href={contact.social[1]?.url || "https://linkedin.com/in/sujaybabu"} 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition-colors"
@@ -54,7 +54,7 @@ export function Hero() {
           </a>
           
           <a 
-            href={`mailto:${about.email || "sujayss149@gmail.com"}`}
+            href={`mailto:${contact.email || "sujayss149@gmail.com"}`}
             className="text-gray-300 hover:text-white transition-colors"
             aria-label="Email"
           >
