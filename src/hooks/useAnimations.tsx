@@ -102,3 +102,55 @@ export function useSequentialAnimation(itemCount: number, baseDelay = 100, incre
   
   return animatedItems;
 }
+
+// New smooth scroll reveal animation hook
+export function useSmoothScrollReveal(options = { threshold: 0.1, rootMargin: '0px' }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Calculate how far the element is visible
+            const visibleRatio = Math.min(1, Math.max(0, entry.intersectionRatio));
+            setScrollProgress(visibleRatio);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: options.rootMargin,
+        threshold: Array.from({ length: 20 }, (_, i) => i / 19) // Create array [0, 0.05, 0.1, ..., 1]
+      }
+    );
+
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [options.threshold, options.rootMargin]);
+
+  return { ref, scrollProgress };
+}
+
+// Hook for element hover animation
+export function useHoverAnimation() {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const bindHoverEvents = {
+    onMouseEnter: () => setIsHovered(true),
+    onMouseLeave: () => setIsHovered(false),
+    onFocus: () => setIsHovered(true),
+    onBlur: () => setIsHovered(false)
+  };
+  
+  return { isHovered, bindHoverEvents };
+}
